@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>INICIO</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<center>
+			<p:panelGrid columns="3" layout="grid">
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:outputLabel />
+				<p:outputLabel style="text-aligne:center;">
+					<p:graphicImage url="/img/cromon.png" width="247" height="70.5" />
+				</p:outputLabel>
+				<p:outputLabel style="text-aligne:center;">
+					<p:graphicImage url="/img/usuario.png" height="71"
+						style="align:center" />
+				</p:outputLabel>
+				<p:outputLabel>
+					<p:commandButton value="Salir" action="#{userBean.cerrarSesion}"
+						icon="ui-icon-extlink" />
+				</p:outputLabel>
+				<p:outputLabel />
+				<p:outputLabel value="Usuario" style="text-aligne:center;" />
+				<p:outputLabel />
+			</p:panelGrid>
+
+		</center>
+		<center>
+			<p:tabView>
+				<p:tab title="LAMINAS">
+					<p:tabView>
+						<p:tab title="Faltantes">
+
+							<h:commandLink action="#{userBean.agregarFaltante}">
+								<p:graphicImage url="/img/add.png" width="24" />
+							</h:commandLink>
+
+							<p:dataTable id="faltante" var="faltantes"
+								value="#{userBean.listarFaltantes}" paginator="true" rows="6"
+								style="margin-bottom:20px">
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Id" />
+									</f:facet>
+									<h:outputText value="#{faltantes.id}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="UserID" />
+									</f:facet>
+									<h:outputText value="#{faltantes.userId}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Número de lámina" />
+									</f:facet>
+									<h:outputText value="#{faltantes.numberSheets}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Cantidad" />
+									</f:facet>
+									<h:outputText value="#{faltantes.countSheets}" />
+								</p:column>
+
+							</p:dataTable>
+						</p:tab>
+						<p:tab title="Repetidas">
+
+							<h:commandLink action="#{userBean.agregarRepetida}">
+								<p:graphicImage url="/img/add.png" width="24" />
+							</h:commandLink>
+
+							<p:dataTable id="repetida" var="repetidas"
+								value="#{userBean.listarRepetidas}" paginator="true" rows="6"
+								style="margin-bottom:20px">
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Id" />
+									</f:facet>
+									<h:outputText value="#{repetidas.id}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="UserID" />
+									</f:facet>
+									<h:outputText value="#{repetidas.userId}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Número de lámina" />
+									</f:facet>
+									<h:outputText value="#{repetidas.numberSheets}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Cantidad" />
+									</f:facet>
+									<h:outputText value="#{repetidas.countSheets}" />
+								</p:column>
+
+							</p:dataTable>
+						</p:tab>
+					</p:tabView>
+
+				</p:tab>
+				<p:tab title="NOTICIAS">
+
+					<center>
+						<p:dataScroller id="new" var="noticia"
+							value="#{newBean.listarNoticias}" chunkSize="20">
+							<h:panelGrid columns="2" style="width:100%"
+								columnClasses="logo,detail">
+								<p:graphicImage url="/img/news.png" width="150" height="150" />
+								<p:outputPanel>
+									<h:panelGrid columns="2" cellpadding="5">
+										<h:outputText value="Título: " />
+										<h:outputText value="#{noticia.shortDescription}"
+											style="font-weight: bold" />
+
+										<h:outputText value="Cuerpo: " />
+										<h:outputText value="#{noticia.largeDescription}"
+											style="font-weight: bold" />
+
+										<h:outputText value="Fecha publicación: " />
+										<h:outputText value="#{noticia.dateNews}"
+											style="font-weight: bold" />
+									</h:panelGrid>
+								</p:outputPanel>
+							</h:panelGrid>
+						</p:dataScroller>
+					</center>
+
+				</p:tab>
+				<p:tab title="AJUSTES">
+					<p:tabView>
+						<p:tab title="Mis Datos">
+							<p:panelGrid columns="2">
+								<f:facet name="header">
+									<h:outputText value="Cambio de datos" />
+								</f:facet>
+								<p:outputLabel value="Usuario:" />
+								<p:inputText id="user" value="#{userBean.usuario.userName}"
+									maxlength="8" />
+								<p:outputLabel value="Nombre:" />
+								<p:inputText id="name" value="#{userBean.usuario.fullName}"
+									maxlength="60" />
+								<p:outputLabel value="Teléfono:" />
+								<p:inputText id="numbre" value="#{userBean.usuario.phoneNumber}"
+									maxlength="10" />
+								<p:outputLabel value="Email:" />
+								<p:inputText id="email" value="#{userBean.usuario.emailAddress}"
+									maxlength="75" />
+							</p:panelGrid>
+							<br />
+							<p:commandButton value="Guardar"
+								action="#{userBean.actualizarDatos}" />
+							<br />
+						</p:tab>
+						<p:tab title="Ajustes de Contraseña">
+
+							<p:panelGrid columns="2">
+								<f:facet name="header">
+									<h:outputText value="Cambio de contraseña" />
+								</f:facet>
+								<p:outputLabel value="Contraseña anterior:" />
+								<p:password id="lastPassword"
+									value="#{userBean.contrasenaAnterior}" maxlength="256" />
+								<p:outputLabel value="Contraseña nueva:" />
+								<p:password id="newPassword" value="#{userBean.contrasenaNueva}"
+									maxlength="256" />
+
+								<p:outputLabel value="Repita la Contraseña:" />
+								<p:password id="rNewPassword"
+									value="#{userBean.contrasenaNuevaRep}" maxlength="256" />
+							</p:panelGrid>
+							<br />
+							<p:commandButton value="Guardar"
+								action="#{userBean.actualizarContrasena}" />
+							<br />
+							<h:inputHidden value="#{userBean.usuario.emailAddress}" />
+						</p:tab>
+					</p:tabView>
+				</p:tab>
+			</p:tabView>
+		</center>
+	</h:form>
+
+</h:body>
+</html>
