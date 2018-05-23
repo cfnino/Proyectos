@@ -1,6 +1,11 @@
 package com.cromon.bean;
 
 
+
+
+
+
+
 import java.net.InetAddress;
 import java.sql.Timestamp;
 import java.util.Calendar;
